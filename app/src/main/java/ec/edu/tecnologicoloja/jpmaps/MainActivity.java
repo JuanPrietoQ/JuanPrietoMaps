@@ -38,6 +38,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         altitudTextView = findViewById(R.id.editTextText3);
 
         Button btnObtener = findViewById(R.id.button);
+        Button btnMapa = findViewById(R.id.button2);
+
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v==btnMapa){
+                    startMapActivity();
+                }
+
+            }
+        });
         btnObtener.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +82,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    public void startMapActivity() {
+        Intent intent = new Intent(MainActivity.this, MapActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onLocationChanged(Location location) {
         double latitud = location.getLatitude();
@@ -81,6 +97,4 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         longitudTextView.setText("" + longitud);
         altitudTextView.setText("" + altitud);
     }
-
-    // Resto de los métodos de la interfaz LocationListener (onProviderDisabled, onProviderEnabled, onStatusChanged)
 }
